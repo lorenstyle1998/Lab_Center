@@ -1,4 +1,6 @@
-# Lab_Center | Todo iPhone
+# Lab_Center
+
+Catálogo y taller de iPhones. Todo iPhone.
 
 Catálogo y taller de iPhones. Toda consulta, negociación y pago se realiza por WhatsApp; no hay pagos en línea.
 
