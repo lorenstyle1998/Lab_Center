@@ -1,0 +1,315 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: "Google Sans", "Manrope", system-ui, sans-serif;
+  --font-display: "Manrope", system-ui, sans-serif;
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-whatsapp: var(--whatsapp);
+}
+
+:root {
+  --radius: 1.25rem;
+  --background: oklch(0.13 0 0);
+  --foreground: oklch(0.97 0 0);
+  --card: oklch(0.19 0 0);
+  --card-foreground: oklch(0.97 0 0);
+  --popover: oklch(0.19 0 0);
+  --popover-foreground: oklch(0.97 0 0);
+  --primary: oklch(0.97 0 0);
+  --primary-foreground: oklch(0.13 0 0);
+  --secondary: oklch(0.24 0 0);
+  --secondary-foreground: oklch(0.97 0 0);
+  --muted: oklch(0.22 0 0);
+  --muted-foreground: oklch(0.68 0 0);
+  --accent: oklch(0.58 0.22 295);
+  --accent-foreground: oklch(0.98 0 0);
+  --brand-blue: oklch(0.62 0.19 255);
+  --gradient-brand: linear-gradient(135deg, oklch(0.58 0.22 295), oklch(0.62 0.19 255));
+  --gradient-glow: radial-gradient(60% 60% at 50% 40%, oklch(0.58 0.22 295 / 35%), transparent 70%);
+  --shadow-glow: 0 20px 60px -20px oklch(0.58 0.22 295 / 55%);
+  --destructive: oklch(0.65 0.2 25);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.8 0.15 75);
+  --whatsapp: oklch(0.72 0.17 150);
+  --service-cyan: oklch(0.78 0.13 205);
+  --service-blue: oklch(0.76 0.14 245);
+  --service-green: oklch(0.79 0.15 150);
+  --service-amber: oklch(0.82 0.15 80);
+  --service-rose: oklch(0.76 0.16 20);
+  --service-violet: oklch(0.76 0.17 300);
+  --gradient-text: linear-gradient(
+    90deg,
+    oklch(0.8 0.15 75),
+    oklch(0.75 0.15 25),
+    oklch(0.7 0.15 250)
+  );
+}
+
+@utility text-gradient {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility bg-brand {
+  background: var(--gradient-brand);
+}
+@utility bg-glow {
+  background: var(--gradient-glow);
+}
+@utility shadow-glow {
+  box-shadow: var(--shadow-glow);
+}
+@utility card-glass {
+  background: linear-gradient(160deg, oklch(1 0 0 / 6%), oklch(1 0 0 / 2%));
+  border: 1px solid var(--color-border);
+  backdrop-filter: blur(12px);
+}
+@utility reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+  &.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+@utility animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+@utility animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(2deg);
+  }
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+  }
+}
+
+:root {
+  --photo-background: oklch(0.99 0 0);
+  --trade-in-background: linear-gradient(
+    115deg,
+    var(--background),
+    color-mix(in oklab, var(--brand-blue) 12%, var(--background)),
+    var(--background)
+  );
+  --menu-shadow: 0 8px 30px color-mix(in oklab, var(--background) 65%, transparent);
+}
+.floating-menu {
+  box-shadow: var(--menu-shadow);
+  transition:
+    transform 280ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    opacity 280ms ease;
+}
+.floating-menu-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(calc(-100% - 1rem));
+}
+.service-marquee {
+  overflow: hidden;
+  background: color-mix(in oklab, var(--card) 35%, transparent);
+}
+.service-icon-wrap {
+  --service-icon-color: var(--service-cyan);
+  display: grid;
+  width: 3rem;
+  height: 3rem;
+  flex: none;
+  place-items: center;
+  border: 1px solid color-mix(in oklab, var(--service-icon-color) 30%, var(--color-border));
+  border-radius: 0.75rem;
+  background: color-mix(in oklab, var(--service-icon-color) 10%, var(--card));
+  color: var(--service-icon-color);
+}
+.service-icon-wrap[data-tone="blue"] {
+  --service-icon-color: var(--service-blue);
+}
+.service-icon-wrap[data-tone="green"] {
+  --service-icon-color: var(--service-green);
+}
+.service-icon-wrap[data-tone="amber"] {
+  --service-icon-color: var(--service-amber);
+}
+.service-icon-wrap[data-tone="rose"] {
+  --service-icon-color: var(--service-rose);
+}
+.service-icon-wrap[data-tone="violet"] {
+  --service-icon-color: var(--service-violet);
+}
+.service-card {
+  transition:
+    opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 280ms ease;
+}
+.service-card:hover {
+  transform: translateY(-4px);
+}
+.footer-logo {
+  animation: logo-signoff 4s ease-in-out infinite;
+  transform-origin: center;
+}
+@keyframes logo-signoff {
+  0%,
+  100% {
+    transform: scale(1) rotate(0);
+  }
+  50% {
+    transform: scale(1.1) rotate(-5deg);
+  }
+}
+.offers-viewport {
+  padding: 32px 0 42px;
+}
+.offer-slide {
+  flex-basis: 340px;
+}
+.offer-card {
+  transition:
+    transform 900ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    opacity 600ms;
+  transform-origin: center;
+}
+.tilt-left .offer-card {
+  transform: rotate(-5deg) translateY(12px) scale(0.96);
+  opacity: 0.78;
+}
+.tilt-right .offer-card {
+  transform: rotate(5deg) translateY(12px) scale(0.96);
+  opacity: 0.78;
+}
+.is-active .offer-card {
+  transform: rotate(0) scale(1);
+  opacity: 1;
+}
+.phone-photo-stage {
+  background: var(--photo-background);
+}
+.trade-in-band {
+  background: var(--trade-in-background);
+}
+.trade-in-art {
+  position: relative;
+  min-height: 330px;
+}
+.trade-in-orbit {
+  animation: trade-orbit 24s linear infinite;
+}
+@keyframes trade-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (max-width: 480px) {
+  .offer-slide {
+    flex-basis: min(310px, 88vw);
+  }
+  .trade-in-art {
+    min-height: 290px;
+  }
+}
+@media (max-width: 360px) {
+  .hero-title {
+    font-size: 2.625rem;
+  }
+  .floating-menu-inner {
+    gap: 0.375rem;
+    padding-inline: 0.75rem;
+  }
+  .floating-menu-brand img {
+    width: 2rem;
+    height: 2rem;
+  }
+  .floating-menu-cta {
+    padding-inline: 0.625rem;
+    font-size: 0.75rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="on"]) *,
+  :root:not([data-motion="on"]) *::before,
+  :root:not([data-motion="on"]) *::after {
+    scroll-behavior: auto !important;
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+  :root:not([data-motion="on"]) .reveal {
+    opacity: 1;
+    transform: none;
+  }
+  :root:not([data-motion="on"]) .animate-marquee {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    white-space: normal;
+  }
+  :root:not([data-motion="on"]) .service-marquee-group {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem 1.5rem;
+    padding-right: 0;
+    font-size: 1.125rem;
+  }
+  :root:not([data-motion="on"]) .service-marquee-group[aria-hidden="true"] {
+    display: none;
+  }
+}
